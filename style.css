@@ -1,0 +1,636 @@
+/* css/style.css | XYRONYX OS Phase 3 Stable */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+:root{
+  --bg:#03060d;
+  --bg2:#08111c;
+  --glass:rgba(255,255,255,.07);
+  --glass-2:rgba(255,255,255,.11);
+  --border:rgba(255,255,255,.12);
+  --text:#eef7fa;
+  --muted:#9eb0b7;
+  --accent:#00e7d0;
+  --accent-soft:rgba(0,231,208,.14);
+  --danger:#ff5f57;
+  --warn:#febc2e;
+  --ok:#28c840;
+  --shadow:0 20px 55px rgba(0,0,0,.38);
+}
+
+html,body{
+  width:100%;
+  height:100%;
+}
+
+body{
+  font-family:'Inter',sans-serif;
+  color:var(--text);
+  overflow:hidden;
+  position:relative;
+  background:
+    radial-gradient(circle at 15% 18%, rgba(0,231,208,.08), transparent 18%),
+    radial-gradient(circle at 82% 30%, rgba(255,255,255,.04), transparent 15%),
+    radial-gradient(circle at 55% 78%, rgba(0,231,208,.06), transparent 18%),
+    linear-gradient(155deg,var(--bg),var(--bg2));
+}
+
+/* Stars */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background-image:radial-gradient(rgba(255,255,255,.75) 1px, transparent 1px);
+  background-size:34px 34px;
+  opacity:.10;
+  animation:starsMove 34s linear infinite;
+  pointer-events:none;
+}
+
+@keyframes starsMove{
+  from{transform:translateY(0);}
+  to{transform:translateY(44px);}
+}
+
+/* Shared */
+.hidden{
+  display:none !important;
+}
+
+.glass{
+  background:var(--glass);
+  border:1px solid var(--border);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  box-shadow:var(--shadow);
+}
+
+.muted{
+  color:var(--muted);
+  line-height:1.6;
+}
+
+.tiny-label{
+  color:var(--accent);
+  letter-spacing:2px;
+  font-size:.72rem;
+  font-weight:700;
+}
+
+/* Cursor Glow */
+#cursor-glow{
+  position:fixed;
+  width:180px;
+  height:180px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(0,231,208,.18), transparent 65%);
+  transform:translate(-50%,-50%);
+  left:0;
+  top:0;
+  pointer-events:none;
+  z-index:9999;
+}
+
+/* =====================
+BOOT
+===================== */
+#boot-screen{
+  position:fixed;
+  inset:0;
+  z-index:999;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:16px;
+  background:linear-gradient(180deg,#02050a,#08111c);
+}
+
+.boot-core{
+  width:92px;
+  height:92px;
+  border-radius:50%;
+  background:radial-gradient(circle,var(--accent),transparent 65%);
+  animation:pulse 2s ease infinite;
+}
+
+@keyframes pulse{
+  0%,100%{transform:scale(1);opacity:.8;}
+  50%{transform:scale(1.14);opacity:1;}
+}
+
+#boot-screen h1{
+  font-size:3rem;
+  letter-spacing:4px;
+  font-weight:800;
+  color:var(--accent);
+}
+
+#boot-screen p{
+  color:var(--muted);
+}
+
+.boot-loader{
+  width:230px;
+  height:5px;
+  overflow:hidden;
+  border-radius:999px;
+  background:rgba(255,255,255,.08);
+}
+
+.boot-loader span{
+  display:block;
+  width:38%;
+  height:100%;
+  background:var(--accent);
+  border-radius:999px;
+  animation:loader 2s ease infinite;
+}
+
+@keyframes loader{
+  from{transform:translateX(-120%);}
+  to{transform:translateX(340%);}
+}
+
+/* =====================
+LOCK SCREEN
+===================== */
+#lock-screen{
+  position:fixed;
+  inset:0;
+  z-index:950;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.lock-overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.28);
+}
+
+.lock-card{
+  position:relative;
+  z-index:2;
+  width:350px;
+  padding:28px;
+  border-radius:28px;
+  text-align:center;
+}
+
+.avatar-ring{
+  width:92px;
+  height:92px;
+  margin:auto;
+  padding:4px;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--accent),transparent);
+}
+
+.avatar-core{
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#0b141d;
+  font-size:2rem;
+  font-weight:800;
+}
+
+#lock-time{
+  margin-top:18px;
+  font-size:3rem;
+  font-weight:800;
+}
+
+#lock-date{
+  margin-top:8px;
+  color:var(--muted);
+}
+
+#unlock-btn{
+  margin-top:22px;
+  width:100%;
+  height:52px;
+  border:none;
+  border-radius:16px;
+  cursor:pointer;
+  background:var(--accent);
+  color:#041214;
+  font-weight:800;
+}
+
+/* =====================
+DESKTOP
+===================== */
+#desktop{
+  width:100%;
+  height:100vh;
+  padding:18px;
+  position:relative;
+}
+
+/* Topbar */
+.topbar{
+  height:58px;
+  border-radius:18px;
+  padding:0 18px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.top-left,.top-center,.top-right{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.brand-dot{
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:var(--accent);
+  box-shadow:0 0 14px var(--accent);
+}
+
+.brand-name{
+  font-weight:800;
+  letter-spacing:1px;
+}
+
+/* Widgets */
+.widget-grid{
+  margin-top:20px;
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr;
+  gap:18px;
+}
+
+.widget{
+  min-height:170px;
+  border-radius:28px;
+  padding:22px;
+}
+
+.hero-widget h2{
+  margin:10px 0;
+  font-size:2rem;
+}
+
+/* Notifications */
+#notification-stack{
+  position:absolute;
+  top:88px;
+  right:18px;
+  display:grid;
+  gap:10px;
+  z-index:60;
+}
+
+.toast{
+  min-width:250px;
+  padding:14px;
+  border-radius:18px;
+  animation:toastIn .24s ease;
+}
+
+@keyframes toastIn{
+  from{opacity:0;transform:translateY(-8px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+/* AETHER Orb */
+#aether-orb{
+  position:absolute;
+  right:26px;
+  bottom:112px;
+  width:72px;
+  height:72px;
+  border:none;
+  border-radius:50%;
+  cursor:pointer;
+  background:rgba(0,0,0,.38);
+  box-shadow:0 18px 35px rgba(0,0,0,.32);
+}
+
+.orb-core{
+  position:absolute;
+  inset:50%;
+  width:26px;
+  height:26px;
+  margin-left:-13px;
+  margin-top:-13px;
+  border-radius:50%;
+  background:var(--accent);
+  box-shadow:0 0 18px var(--accent);
+  animation:pulse 2s ease infinite;
+}
+
+.orb-ring{
+  position:absolute;
+  inset:8px;
+  border-radius:50%;
+  border:1px solid rgba(0,231,208,.35);
+}
+
+/* AETHER Panel */
+#aether-panel{
+  position:absolute;
+  right:26px;
+  bottom:198px;
+  width:320px;
+  padding:18px;
+  border-radius:24px;
+  z-index:70;
+}
+
+.hidden-panel{
+  display:none;
+}
+
+.panel-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+#expand-aether{
+  border:none;
+  padding:8px 12px;
+  border-radius:12px;
+  cursor:pointer;
+  background:var(--accent-soft);
+  color:var(--text);
+}
+
+.quick-grid{
+  margin-top:14px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.quick-btn{
+  height:42px;
+  border:none;
+  border-radius:14px;
+  cursor:pointer;
+  background:rgba(255,255,255,.05);
+  color:var(--text);
+}
+
+/* Windows */
+.window{
+  position:absolute;
+  top:130px;
+  left:120px;
+  width:470px;
+  min-height:420px;
+  border-radius:26px;
+  overflow:hidden;
+  z-index:20;
+  animation:openWin .25s ease;
+}
+
+.wide-window{
+  width:560px;
+}
+
+.hidden-window{
+  display:none;
+}
+
+@keyframes openWin{
+  from{opacity:0;transform:scale(.96);}
+  to{opacity:1;transform:scale(1);}
+}
+
+.window-bar{
+  height:54px;
+  padding:0 14px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  cursor:move;
+}
+
+.traffic{
+  display:flex;
+  gap:8px;
+}
+
+.traffic span{
+  width:12px;
+  height:12px;
+  border-radius:50%;
+}
+
+.close-btn{background:var(--danger);cursor:pointer;}
+.yellow{background:var(--warn);}
+.green{background:var(--ok);}
+
+.window-title{
+  color:var(--muted);
+}
+
+.window-content{
+  padding:16px;
+}
+
+/* Notes */
+#notes-area{
+  width:100%;
+  height:320px;
+  resize:none;
+  border:none;
+  outline:none;
+  border-radius:18px;
+  padding:16px;
+  background:rgba(255,255,255,.05);
+  color:var(--text);
+  font-family:inherit;
+}
+
+/* Calculator */
+.calc-wrap{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+#calc-screen{
+  width:100%;
+  height:54px;
+  border:none;
+  outline:none;
+  border-radius:16px;
+  padding:0 16px;
+  text-align:right;
+  font-size:1.2rem;
+  background:rgba(255,255,255,.05);
+  color:var(--text);
+}
+
+.calc-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+
+.calc-grid button{
+  height:48px;
+  border:none;
+  border-radius:14px;
+  cursor:pointer;
+  color:var(--text);
+  background:rgba(255,255,255,.05);
+}
+
+.clear-btn{
+  grid-column:span 4;
+  background:rgba(255,95,87,.18) !important;
+}
+
+/* Music */
+.full-audio{
+  width:100%;
+  margin-top:16px;
+}
+
+/* Files */
+.file-list{
+  display:grid;
+  gap:12px;
+}
+
+.file-item{
+  padding:14px;
+  border-radius:14px;
+  background:rgba(255,255,255,.04);
+}
+
+/* Chat */
+.ai-wrap{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.chat-log{
+  height:260px;
+  overflow:auto;
+  display:grid;
+  gap:10px;
+}
+
+.bot-msg,.user-msg{
+  max-width:82%;
+  padding:12px 14px;
+  border-radius:16px;
+}
+
+.bot-msg{
+  background:rgba(255,255,255,.05);
+}
+
+.user-msg{
+  margin-left:auto;
+  background:var(--accent-soft);
+}
+
+.chat-input-row{
+  display:flex;
+  gap:10px;
+}
+
+#chat-input{
+  flex:1;
+  height:46px;
+  border:none;
+  outline:none;
+  border-radius:14px;
+  padding:0 14px;
+  background:rgba(255,255,255,.05);
+  color:var(--text);
+}
+
+#send-chat{
+  width:90px;
+  border:none;
+  border-radius:14px;
+  cursor:pointer;
+  background:var(--accent);
+  color:#041214;
+  font-weight:800;
+}
+
+/* Dock */
+.dock{
+  position:absolute;
+  left:50%;
+  bottom:22px;
+  transform:translateX(-50%);
+  display:flex;
+  gap:12px;
+  padding:12px 16px;
+  border-radius:24px;
+}
+
+.dock-icon{
+  width:54px;
+  height:54px;
+  border:none;
+  border-radius:16px;
+  cursor:pointer;
+  font-size:1.15rem;
+  color:var(--text);
+  background:rgba(255,255,255,.04);
+  transition:.25s ease;
+}
+
+.dock-icon:hover{
+  transform:translateY(-8px) scale(1.08);
+  background:var(--accent-soft);
+}
+
+/* Responsive */
+@media(max-width:980px){
+  .widget-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:700px){
+  .window,.wide-window{
+    width:92%;
+    left:4%;
+    top:110px;
+  }
+
+  #aether-panel{
+    width:92%;
+    right:4%;
+  }
+
+  .dock-icon{
+    width:46px;
+    height:46px;
+  }
+
+  #boot-screen h1{
+    font-size:2rem;
+  }
+
+  #lock-time{
+    font-size:2.4rem;
+  }
+}

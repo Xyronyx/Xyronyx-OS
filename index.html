@@ -1,0 +1,281 @@
+<!-- index.html | XYRONYX OS Phase 3 Stable -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>XYRONYX OS</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Ambient Glow -->
+<div id="cursor-glow"></div>
+
+<!-- =====================
+BOOT SCREEN
+===================== -->
+<section id="boot-screen">
+  <div class="boot-core"></div>
+  <h1>XYRONYX OS</h1>
+  <p>Initializing premium systems...</p>
+
+  <div class="boot-loader">
+    <span></span>
+  </div>
+
+  <audio id="startup-sound" preload="auto">
+    <source src="assets/startup.mp3" type="audio/mpeg">
+  </audio>
+</section>
+
+<!-- =====================
+LOCK SCREEN
+===================== -->
+<section id="lock-screen" class="hidden">
+  <div class="lock-overlay"></div>
+
+  <div class="lock-card glass">
+    <div class="avatar-ring">
+      <div class="avatar-core">P</div>
+    </div>
+
+    <h2 id="lock-time">--:--</h2>
+    <p id="lock-date">Loading...</p>
+
+    <button id="unlock-btn">Press Enter to Unlock</button>
+  </div>
+</section>
+
+<!-- =====================
+DESKTOP
+===================== -->
+<main id="desktop" class="hidden">
+
+  <!-- Topbar -->
+  <header class="topbar glass">
+    <div class="top-left">
+      <span class="brand-dot"></span>
+      <span class="brand-name">XYRONYX OS</span>
+    </div>
+
+    <div class="top-center">
+      <span>Systems Online</span>
+    </div>
+
+    <div class="top-right" id="datetime">
+      --:-- • ---
+    </div>
+  </header>
+
+  <!-- Widgets -->
+  <section class="widget-grid">
+
+    <div class="widget glass hero-widget">
+      <p class="tiny-label">STATUS</p>
+      <h2>Welcome Back, Prince.</h2>
+      <p class="muted">
+        AETHER is online and ready.
+      </p>
+    </div>
+
+    <div class="widget glass">
+      <p class="tiny-label">MISSION</p>
+      <h3>Focus</h3>
+      <p class="muted">Build the future.</p>
+    </div>
+
+    <div class="widget glass">
+      <p class="tiny-label">ENERGY</p>
+      <h3>Mode</h3>
+      <p class="muted">Creator Activated</p>
+    </div>
+
+  </section>
+
+  <!-- Notifications -->
+  <section id="notification-stack"></section>
+
+  <!-- =====================
+  AETHER ORB
+  ===================== -->
+  <button id="aether-orb" title="AETHER">
+    <span class="orb-core"></span>
+    <span class="orb-ring"></span>
+  </button>
+
+  <!-- Mini Panel -->
+  <section id="aether-panel" class="glass hidden-panel">
+    <div class="panel-head">
+      <h3>AETHER</h3>
+      <button id="expand-aether">Expand</button>
+    </div>
+
+    <p class="muted">
+      Ready to assist.
+    </p>
+
+    <div class="quick-grid">
+      <button class="quick-btn">Notes</button>
+      <button class="quick-btn">Focus</button>
+      <button class="quick-btn">GitHub</button>
+      <button class="quick-btn">Weather</button>
+    </div>
+  </section>
+
+  <!-- =====================
+  APP WINDOWS
+  ===================== -->
+
+  <!-- Notes -->
+  <section class="window glass hidden-window" id="notes-window">
+    <div class="window-bar drag-handle">
+      <div class="traffic">
+        <span class="close-btn" data-close="notes-window"></span>
+        <span class="yellow"></span>
+        <span class="green"></span>
+      </div>
+      <div class="window-title">Notes</div>
+    </div>
+
+    <div class="window-content">
+      <textarea id="notes-area" placeholder="Write your ideas here..."></textarea>
+    </div>
+  </section>
+
+  <!-- Calculator -->
+  <section class="window glass hidden-window" id="calc-window">
+    <div class="window-bar drag-handle">
+      <div class="traffic">
+        <span class="close-btn" data-close="calc-window"></span>
+        <span class="yellow"></span>
+        <span class="green"></span>
+      </div>
+      <div class="window-title">Calculator</div>
+    </div>
+
+    <div class="window-content calc-wrap">
+      <input type="text" id="calc-screen" readonly>
+
+      <div class="calc-grid">
+        <button>7</button><button>8</button><button>9</button><button>/</button>
+        <button>4</button><button>5</button><button>6</button><button>*</button>
+        <button>1</button><button>2</button><button>3</button><button>-</button>
+        <button>0</button><button>.</button><button>=</button><button>+</button>
+        <button class="clear-btn">C</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Music -->
+  <section class="window glass hidden-window" id="music-window">
+    <div class="window-bar drag-handle">
+      <div class="traffic">
+        <span class="close-btn" data-close="music-window"></span>
+        <span class="yellow"></span>
+        <span class="green"></span>
+      </div>
+      <div class="window-title">Music</div>
+    </div>
+
+    <div class="window-content">
+      <h3>Ambient Focus</h3>
+      <p class="muted">Future vibes for creators.</p>
+
+      <audio controls class="full-audio">
+        <source src="assets/song.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+  </section>
+
+  <!-- Files -->
+  <section class="window glass hidden-window" id="files-window">
+    <div class="window-bar drag-handle">
+      <div class="traffic">
+        <span class="close-btn" data-close="files-window"></span>
+        <span class="yellow"></span>
+        <span class="green"></span>
+      </div>
+      <div class="window-title">Files</div>
+    </div>
+
+    <div class="window-content file-list">
+      <div class="file-item">📁 Projects</div>
+      <div class="file-item">📁 Designs</div>
+      <div class="file-item">📄 Vision.md</div>
+      <div class="file-item">📄 Ideas.txt</div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="window glass hidden-window" id="about-window">
+    <div class="window-bar drag-handle">
+      <div class="traffic">
+        <span class="close-btn" data-close="about-window"></span>
+        <span class="yellow"></span>
+        <span class="green"></span>
+      </div>
+      <div class="window-title">About</div>
+    </div>
+
+    <div class="window-content">
+      <h2>XYRONYX OS</h2>
+      <p class="muted">
+        Sci-fi premium browser operating system concept.
+      </p>
+      <p>Built by Prince.</p>
+    </div>
+  </section>
+
+  <!-- AETHER Workspace -->
+  <section class="window glass hidden-window wide-window" id="aether-window">
+    <div class="window-bar drag-handle">
+      <div class="traffic">
+        <span class="close-btn" data-close="aether-window"></span>
+        <span class="yellow"></span>
+        <span class="green"></span>
+      </div>
+      <div class="window-title">AETHER Workspace</div>
+    </div>
+
+    <div class="window-content ai-wrap">
+      <div class="chat-log" id="chat-log">
+        <div class="bot-msg">
+          Welcome back, Prince. How may I assist today?
+        </div>
+      </div>
+
+      <div class="chat-input-row">
+        <input type="text" id="chat-input" placeholder="Ask AETHER anything...">
+        <button id="send-chat">Send</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================
+  DOCK
+  ===================== -->
+  <nav class="dock glass">
+
+    <button class="dock-icon" data-open="notes-window">✎</button>
+
+    <button class="dock-icon" data-open="calc-window">⌗</button>
+
+    <button class="dock-icon" data-open="music-window">♪</button>
+
+    <button class="dock-icon" data-open="files-window">▣</button>
+
+    <button class="dock-icon" data-open="about-window">◎</button>
+
+  </nav>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
